@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A131C4A4EFB6DCBE44444406 /* Pods_MovieViewerJ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBAB2E1268EEFC754E9EE9D /* Pods_MovieViewerJ.framework */; };
+		DE63554E1C63C3E700CC50AE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE63554D1C63C3E700CC50AE /* DetailViewController.swift */; };
 		DEAFB4FA1C587167001F4AED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAFB4F91C587167001F4AED /* AppDelegate.swift */; };
 		DEAFB4FF1C587167001F4AED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEAFB4FD1C587167001F4AED /* Main.storyboard */; };
 		DEAFB5011C587167001F4AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEAFB5001C587167001F4AED /* Assets.xcassets */; };
@@ -20,7 +21,8 @@
 		3FBAB2E1268EEFC754E9EE9D /* Pods_MovieViewerJ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieViewerJ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDFCB7CF4EC82A3B90DCA14 /* Pods-MovieViewerJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewerJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewerJ/Pods-MovieViewerJ.release.xcconfig"; sourceTree = "<group>"; };
 		9086AB5F3AB9ACD3638AE4ED /* Pods-MovieViewerJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewerJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewerJ/Pods-MovieViewerJ.debug.xcconfig"; sourceTree = "<group>"; };
-		DEAFB4F61C587167001F4AED /* MovieViewerJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewerJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE63554D1C63C3E700CC50AE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DEAFB4F61C587167001F4AED /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAFB4F91C587167001F4AED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEAFB4FE1C587167001F4AED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEAFB5001C587167001F4AED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +65,7 @@
 		DEAFB4F71C587167001F4AED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DEAFB4F61C587167001F4AED /* MovieViewerJ.app */,
+				DEAFB4F61C587167001F4AED /* Flicks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				DEAFB50B1C587225001F4AED /* MoviesViewController.swift */,
+				DE63554D1C63C3E700CC50AE /* DetailViewController.swift */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -110,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DEAFB4F51C587167001F4AED /* MovieViewerJ */ = {
+		DEAFB4F51C587167001F4AED /* Flicks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DEAFB5081C587167001F4AED /* Build configuration list for PBXNativeTarget "MovieViewerJ" */;
+			buildConfigurationList = DEAFB5081C587167001F4AED /* Build configuration list for PBXNativeTarget "Flicks" */;
 			buildPhases = (
 				E3134AD6291C45183CCD4D88 /* Check Pods Manifest.lock */,
 				DEAFB4F21C587167001F4AED /* Sources */,
@@ -125,9 +128,9 @@
 			);
 			dependencies = (
 			);
-			name = MovieViewerJ;
+			name = Flicks;
 			productName = MovieViewerJ;
-			productReference = DEAFB4F61C587167001F4AED /* MovieViewerJ.app */;
+			productReference = DEAFB4F61C587167001F4AED /* Flicks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -145,7 +148,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DEAFB4F11C587167001F4AED /* Build configuration list for PBXProject "MovieViewerJ" */;
+			buildConfigurationList = DEAFB4F11C587167001F4AED /* Build configuration list for PBXProject "Flicks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -158,7 +161,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DEAFB4F51C587167001F4AED /* MovieViewerJ */,
+				DEAFB4F51C587167001F4AED /* Flicks */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +235,7 @@
 				DEAFB4FA1C587167001F4AED /* AppDelegate.swift in Sources */,
 				DEAFB50C1C587225001F4AED /* MoviesViewController.swift in Sources */,
 				DEAFB50F1C587D38001F4AED /* MovieCell.swift in Sources */,
+				DE63554E1C63C3E700CC50AE /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +352,7 @@
 				INFOPLIST_FILE = MovieViewerJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = prework.MovieViewerJ;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Flicks;
 			};
 			name = Debug;
 		};
@@ -360,14 +364,14 @@
 				INFOPLIST_FILE = MovieViewerJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = prework.MovieViewerJ;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Flicks;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DEAFB4F11C587167001F4AED /* Build configuration list for PBXProject "MovieViewerJ" */ = {
+		DEAFB4F11C587167001F4AED /* Build configuration list for PBXProject "Flicks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEAFB5061C587167001F4AED /* Debug */,
@@ -376,7 +380,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEAFB5081C587167001F4AED /* Build configuration list for PBXNativeTarget "MovieViewerJ" */ = {
+		DEAFB5081C587167001F4AED /* Build configuration list for PBXNativeTarget "Flicks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEAFB5091C587167001F4AED /* Debug */,

@@ -10,15 +10,19 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var seachBar: UISearchBar!
     
     var movies: [NSDictionary]?
+    var endpoint: String!
+    var filteredData : [NSDictionary]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        filteredData = movies
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
@@ -29,9 +33,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
+        seachBar.delegate = self
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -55,6 +60,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
                             
                             self.movies = responseDictionary["results"] as? [NSDictionary]
+                            self.filteredData = self.movies
                             self.tableView.reloadData()
                     }
                 }
@@ -72,45 +78,60 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
-        if let movies = movies {
+        if let filteredData = filteredData {
             
-            return movies.count
+            return filteredData.count
             
-        } else {
-         
+        }
+        
+        else {
+            
             return 0
+            
         }
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
-        let movie = movies! [indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+        let movie = filteredData [indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-        let posterPath = movie["poster_path"] as! String
-        
-        let baseUrl = "http://image.tmdb.org/t/p/w500"
-        
-        let imageUrl = NSURL(string:baseUrl + posterPath)
-        
-        
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        if let posterPath = movie["poster_path"] as? String{
+        
+        let imageUrl = NSURL(string:baseUrl + posterPath)
         cell.posterView.setImageWithURL(imageUrl!)
         
+        }
         
-        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.redColor()
+        cell.selectedBackgroundView = backgroundView
+       
         print("row \(indexPath.row)")
         return cell
+        
+        
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = searchText.isEmpty ? movies : movies!.filter({(movie: NSDictionary) -> Bool in
+            return (movie["title"] as! String).rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+        })
+        
+        self.tableView.reloadData()
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -132,6 +153,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             MBProgressHUD.hideHUDForView(self.view, animated: true)
                             
                             self.movies = responseDictionary["results"] as? [NSDictionary]
+                            self.filteredData = self.movies
                             self.tableView.reloadData()
                             refreshControl.endRefreshing()
                     }
@@ -151,14 +173,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let movie = movies![indexPath!.row]
+        
+        let detailViewController = segue.destinationViewController as! DetailViewController
+        detailViewController.movie = movie
+        
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
