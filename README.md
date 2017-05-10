@@ -1,12 +1,8 @@
-# MovieViewerJ
-
-# CodepathUniversity-MovieViewer
+# MovieViewer
 
 # Project 1 - Flicks
 
 Flicks v1 is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
-
-Time spent: 4 hours spent in total
 
 ## User Stories
 
@@ -22,7 +18,7 @@ The following **required** functionality is complete:
 
 Here's a walkthrough of implemented user stories:
 
-http://i.imgur.com/E03sgMU.gif
+<img src='http://i.imgur.com/E03sgMU.gif' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
